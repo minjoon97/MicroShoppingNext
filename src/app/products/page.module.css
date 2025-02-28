@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 200px;
+}
+
+.title {
+  max-width: 1800px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.gridContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1800px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.gridItem {
+  width: 25%;
+  height: 500px;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-bottom: 80px;
+}
+
+.itemContent {
+  background-color: rgb(240, 240, 240);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
