@@ -1,4 +1,4 @@
-import fetchProducts from "@/data/firestore";
+import { fetchProducts } from "@/data/firestore";
 import styles from "./page.module.css";
 
 const ProductPage = async () => {
@@ -10,9 +10,12 @@ const ProductPage = async () => {
         <h2>상품목록</h2>
       </div>
       <div className={styles.gridContainer}>
-        {items.map((item, index) => (
-          <div key={index} className={styles.gridItem}>
-            <div className={styles.itemContent}>{item.name}</div>
+        {items.map((item) => (
+          <div key={item.id} className={styles.gridItem}>
+            <div className={styles.itemContent}></div>
+            {item.name}
+            {item.price}
+            {item.category}
           </div>
         ))}
       </div>
