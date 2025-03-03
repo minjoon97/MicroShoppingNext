@@ -1,7 +1,7 @@
 "use client";
 
 import { addProduct } from "@/data/firestore";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import styles from "./page.module.css";
 
@@ -9,19 +9,33 @@ const AdminPage = () => {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productPrice, setProductPrice] = useState(0);
-  const [productImage, setProductImage] = useState("");
+  const [productImage, setProductImage] = useState<File | null>(null);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // e.target.files는 FileList 객체이며, 첫 번째 파일(files[0])을 가져옵니다.
+    if (e.target.files && e.target.files[0]) {
+      setProductImage(e.target.files[0]);
+    }
+  };
 
   const handleAddProduct = async () => {
+    if (!productName || !productCategory || !productPrice || !productImage) {
+      alert("모든 필드를 입력해주세요.");
+      return;
+    }
+
     try {
       await addProduct({
         name: productName,
         category: productCategory,
         price: productPrice,
+        image: productImage,
       });
       // 성공 시 처리
       setProductName("");
       setProductCategory("");
       setProductPrice(0);
+      setProductImage(null);
       alert("상품이 추가되었습니다!");
     } catch (error) {
       console.error("상품 추가 중 오류 발생:", error);
@@ -51,9 +65,10 @@ const AdminPage = () => {
       />
       <input
         type="file"
-        value={productImage}
-        onChange={(e) => setProductImage(e.target.value)}
+        id="imageInput"
+        onChange={handleImageChange}
         placeholder="이미지"
+        accept="image/*"
       />
       <button onClick={handleAddProduct}>상품 추가</button>
     </div>

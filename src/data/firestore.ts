@@ -6,6 +6,7 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
 
 import { addProductType, fetchedProductsType } from "@/types/fetchedProducts";
 
@@ -22,6 +23,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 //product전체 불러오기
 export async function fetchProducts() {
@@ -41,6 +43,7 @@ export async function fetchProducts() {
       name: doc.data()["name"],
       category: doc.data()["category"],
       price: doc.data()["price"],
+      image: doc.data()["image"],
     };
 
     fetchedProducts.push(aProduct);
@@ -50,14 +53,29 @@ export async function fetchProducts() {
 }
 
 //product 추가하기
-export async function addProduct({ name, category, price }: addProductType) {
+export async function addProduct({
+  name,
+  category,
+  price,
+  image,
+}: addProductType) {
   const newProductRef = doc(collection(db, "products"));
 
+  //productId추출
+  const productId = newProductRef.id;
+
+  const storageRef = ref(storage, `products/${productId}`);
+
+  await uploadBytes(storageRef, image);
+
+  const imageUrl = await getDownloadURL(storageRef);
+
   const newProductData = {
-    id: newProductRef.id,
+    id: productId,
     name: name,
     category: category,
     price: price,
+    image: imageUrl,
   };
 
   await setDoc(newProductRef, newProductData);

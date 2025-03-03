@@ -26,17 +26,27 @@
 
 .gridItem {
   width: 25%;
-  height: 500px;
+  height: 600px;
   box-sizing: border-box;
   padding: 20px;
   padding-bottom: 80px;
 }
 
 .itemContent {
+  position: relative;
   background-color: rgb(240, 240, 240);
   height: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
+}
+
+.productImage {
+  transition: transform 0.3s ease;
+}
+
+.itemContent:hover .productImage {
+  transform: scale(1.1);
 }
