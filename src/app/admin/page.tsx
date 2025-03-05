@@ -13,14 +13,13 @@ const AdminPage = () => {
       <div className={styles.menuBox}>
         <ul>
           <li onClick={() => setMenuState(1)}>메인비주얼 리스트 관리</li>
-          <li onClick={() => setMenuState(2)}>인기상품 리스트 관리</li>
-          <li onClick={() => setMenuState(3)}>추천스타일 리스트 관리</li>
-          <li onClick={() => setMenuState(4)}>전체상품 리스트 관리</li>
+          <li onClick={() => setMenuState(2)}>추천스타일 리스트 관리</li>
+          <li onClick={() => setMenuState(3)}>전체상품 리스트 관리</li>
         </ul>
       </div>
       <div className={styles.contentBox}>
         {menuState === 1 && <AdminMainvisuals></AdminMainvisuals>}
-        {menuState === 4 && <AdminProducts></AdminProducts>}
+        {menuState === 3 && <AdminProducts></AdminProducts>}
       </div>
     </div>
   );

@@ -12,7 +12,18 @@
 
 .mainvisual .titleBox {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 210px;
+  bottom: 180px;
   color: white;
+}
+
+.titleBox > h2 {
+  font-size: 100px;
+  font-weight: 500;
+  padding-bottom: 20px;
+}
+
+.titleBox > h3 {
+  font-size: 20px;
+  font-weight: 300;
 }
