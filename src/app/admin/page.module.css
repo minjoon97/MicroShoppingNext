@@ -1,3 +1,39 @@
 .wrapper {
+  margin: 0 auto;
+  display: flex;
+}
+
+.menuBox {
   padding-top: 200px;
+  width: 16%;
+  height: 100vh;
+  background-color: black;
+}
+
+.menuBox ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 1rem;
+}
+
+.menuBox li {
+  color: white;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.menuBox li:hover {
+  background-color: rgb(41, 41, 41);
+  cursor: pointer;
+}
+
+.contentBox {
+  padding-top: 200px;
+  padding-left: 100px;
+  width: 84%;
+  height: 500px;
 }

@@ -1,38 +1,23 @@
-import { fetchProducts } from "@/data/firestore";
-import styles from "./page.module.css";
-import Image from "next/image";
+"use client";
 
-const ProductPage = async () => {
-  const items = await fetchProducts();
-  console.log(items);
+import styles from "./page.module.css";
+import ProductItem from "@/components/productItem";
+import { useProducts } from "@/hooks/useProducts";
+
+const ProductPage = () => {
+  const { items, loading } = useProducts();
+
+  if (loading) return <div>로딩 중...</div>;
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
         <h2>상품목록</h2>
+        <p>{items.length}건</p>
       </div>
       <div className={styles.gridContainer}>
         {items.map((item) => (
-          <div key={item.id} className={styles.gridItem}>
-            <div className={styles.itemContent}>
-              <Image
-                src={item.image}
-                alt="product-image"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  transition: "transform 0.3s ease",
-                }}
-                className={styles.productImage}
-              />
-            </div>
-            {item.name}
-            {item.price}
-            {item.category}
-          </div>
+          <ProductItem key={item.id} item={item}></ProductItem>
         ))}
       </div>
     </div>

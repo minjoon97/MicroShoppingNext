@@ -1,0 +1,45 @@
+.wrapper {
+  max-width: 1500px;
+  width: 90%;
+}
+
+.topContents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  padding-bottom: 50px;
+}
+
+.addBtn {
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50px;
+}
+
+.addBtn:hover {
+  cursor: pointer;
+}
+
+.mainvisualList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mainvisualListItem {
+  width: calc(50% - 3px);
+  height: 40px;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+}

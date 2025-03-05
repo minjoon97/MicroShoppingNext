@@ -9,11 +9,18 @@
   width: 90%;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
 }
 
 .title h2 {
   font-size: 30px;
   font-weight: 600;
+}
+
+.title p {
+  font-weight: 200;
 }
 
 .gridContainer {
@@ -22,31 +29,4 @@
   max-width: 1800px;
   width: 90%;
   margin: 0 auto;
-}
-
-.gridItem {
-  width: 25%;
-  height: 600px;
-  box-sizing: border-box;
-  padding: 20px;
-  padding-bottom: 80px;
-}
-
-.itemContent {
-  position: relative;
-  background-color: rgb(240, 240, 240);
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-}
-
-.productImage {
-  transition: transform 0.3s ease;
-}
-
-.itemContent:hover .productImage {
-  transform: scale(1.1);
 }

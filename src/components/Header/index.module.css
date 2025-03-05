@@ -8,6 +8,13 @@
   z-index: 9999;
 }
 
+.wrapper > h1 {
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  transform: translateY(-50%);
+}
+
 .menu {
   height: 100%;
   display: flex;
