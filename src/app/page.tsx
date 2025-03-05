@@ -1,33 +1,18 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import styles from "./page.module.css";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import MainVisual from "@/components/main-mainvisual";
 
 export default function Home() {
   return (
     <div>
-      <Swiper
-        key="mainvisualswiper"
-        modules={[Pagination, Autoplay]}
-        slidesPerView={1}
-        autoplay={{ delay: 5000 }}
-        loop={true}
-      >
-        {[1, 2, 3].map((index) => (
-          <SwiperSlide key={`section-${index}`}>
-            <section className={styles.mainvisual}>
-              <div className={styles.mainSlideItem}>
-                <h1 className={styles.title}>메인 비주얼 {index}</h1>
-              </div>
-            </section>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <MainVisual></MainVisual>
       <section className={styles.popular}>
         <div className={styles.popularMenu}>
           <h2>가장 인기있는 상품</h2>

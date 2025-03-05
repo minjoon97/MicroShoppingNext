@@ -43,7 +43,7 @@ export async function addMainvisual({
   //productId추출
   const MainvisualId = newMainvisualRef.id;
 
-  const storageRef = ref(storage, `products/${MainvisualId}`);
+  const storageRef = ref(storage, `mainvisuals/${MainvisualId}`);
 
   await uploadBytes(storageRef, image);
 

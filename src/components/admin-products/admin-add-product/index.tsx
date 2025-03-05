@@ -1,9 +1,9 @@
 "use client";
 
-import { addProduct } from "@/data/firestore";
 import { ChangeEvent, useState } from "react";
 
 import styles from "./index.module.css";
+import { addProduct } from "@/data/products";
 
 const AddProductSection = () => {
   const [productName, setProductName] = useState("");
