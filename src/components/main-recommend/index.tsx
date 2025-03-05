@@ -7,27 +7,26 @@ import styles from "./index.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useProducts } from "@/hooks/useProducts";
+import { useRecommends } from "@/hooks/useRecommends";
 import Image from "next/image";
 
-const ModernSection = () => {
-  const { items, loading } = useProducts();
+const RecommendSection = () => {
+  const { items, loading } = useRecommends();
 
   if (loading) return <div>로딩 중...</div>;
 
   return (
-    <section className={styles.modern}>
-      <div className={styles.modernMenu}>
-        <h2>최신 상품</h2>
-        <p>2025 봄 신상 리스트</p>
+    <section className={styles.recommend}>
+      <div className={styles.recommendTitle}>
+        <h2>추천 스타일</h2>
       </div>
       <Swiper
-        key="modernswiper"
+        key="recommendswiper"
         modules={[Pagination]}
-        slidesPerView={5.2}
+        slidesPerView={2.2}
         loop={true}
       >
-        {items.slice(0, 6).map((item, index) => (
+        {items.map((item, index) => (
           <SwiperSlide key={`section-${index}`}>
             <div className={styles.mainSlideItem}>
               <Image
@@ -50,4 +49,4 @@ const ModernSection = () => {
   );
 };
 
-export default ModernSection;
+export default RecommendSection;

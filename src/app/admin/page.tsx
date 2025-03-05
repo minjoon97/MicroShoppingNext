@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import AdminProducts from "@/components/admin-products";
 import AdminMainvisuals from "@/components/admin-mainvisual";
+import AdminRecommends from "@/components/admin-recommend";
 
 const AdminPage = () => {
   const [menuState, setMenuState] = useState(1);
@@ -19,6 +20,7 @@ const AdminPage = () => {
       </div>
       <div className={styles.contentBox}>
         {menuState === 1 && <AdminMainvisuals></AdminMainvisuals>}
+        {menuState === 2 && <AdminRecommends></AdminRecommends>}
         {menuState === 3 && <AdminProducts></AdminProducts>}
       </div>
     </div>
