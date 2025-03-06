@@ -1,8 +1,13 @@
+import LoginSection from "@/components/login-section";
+import Link from "next/link";
+
 const LoginPage = () => {
   return (
     <div>
-      <p>LoginPage!!</p>
-      <p>로그인페이지~</p>
+      <LoginSection></LoginSection>
+      <Link href="/login/create">
+        <button>회원가입하기</button>
+      </Link>
     </div>
   );
 };

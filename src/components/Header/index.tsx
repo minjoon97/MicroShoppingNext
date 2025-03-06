@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 
 import styles from "./index.module.css";
+import { useUserStore } from "@/store/userStore";
 
 const Header = () => {
+  const user = useUserStore((state) => state.user);
+
   return (
     <div className={styles.wrapper}>
       <h1>
@@ -22,12 +27,19 @@ const Header = () => {
             MYPAGE
           </Link>
         </li>
-        <li className={styles.listItem}>
-          <Link className={styles.listItemContent} href="/admin">
-            ADMIN
-          </Link>
-        </li>
+        {user?.role === "admin" && (
+          <li className={styles.listItem}>
+            <Link className={styles.listItemContent} href="/admin">
+              ADMIN
+            </Link>
+          </li>
+        )}
       </ul>
+      <div className={styles.login}>
+        <Link className={styles.listItemContent} href="/login">
+          LOG IN
+        </Link>
+      </div>
     </div>
   );
 };

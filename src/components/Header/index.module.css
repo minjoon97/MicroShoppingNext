@@ -23,6 +23,13 @@
   gap: 2rem;
 }
 
+.login {
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+}
+
 .listItemContent {
   color: black;
   font-size: 14px;
