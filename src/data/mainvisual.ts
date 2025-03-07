@@ -1,5 +1,16 @@
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 import { db, storage } from "./firestore";
 import {
   addMainvisualType,
@@ -59,4 +70,27 @@ export async function addMainvisual({
   await setDoc(newMainvisualRef, newMainvisualData);
 
   return newMainvisualData;
+}
+
+export async function deleteMainvisual(mainvisualId: string) {
+  try {
+    // 1. Firestore에서 데이터 삭제
+    const mainvisualRef = doc(db, "mainvisual", mainvisualId);
+    await deleteDoc(mainvisualRef);
+
+    // 2. Storage에서 이미지 삭제
+    const storageRef = ref(storage, `mainvisuals/${mainvisualId}`);
+    await deleteObject(storageRef);
+
+    return {
+      success: true,
+      message: "메인 비주얼이 성공적으로 삭제되었습니다.",
+    };
+  } catch (error) {
+    console.error("메인 비주얼 삭제 중 오류 발생:", error);
+    return {
+      success: false,
+      message: "메인 비주얼 삭제 중 오류가 발생했습니다.",
+    };
+  }
 }

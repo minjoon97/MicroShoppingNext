@@ -5,6 +5,7 @@ import styles from "./index.module.css";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import AddMainvisualSection from "./admin-add-mv";
+import { deleteMainvisual } from "@/data/mainvisual";
 
 const AdminMainvisuals = () => {
   const { items, loading } = useMainvisuals();
@@ -27,7 +28,13 @@ const AdminMainvisuals = () => {
           <div>로딩 중...</div>
         ) : (
           items.map((item, index) => (
-            <div className={styles.mainvisualListItem} key={index}>
+            <div
+              className={styles.mainvisualListItem}
+              key={index}
+              onClick={() => {
+                deleteMainvisual(item.id);
+              }}
+            >
               {item.title}
             </div>
           ))
