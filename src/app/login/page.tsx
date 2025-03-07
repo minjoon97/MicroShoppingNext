@@ -1,12 +1,13 @@
 import LoginSection from "@/components/login-section";
 import Link from "next/link";
+import styles from "./page.module.css";
 
 const LoginPage = () => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <LoginSection></LoginSection>
-      <Link href="/login/create">
-        <button>회원가입하기</button>
+      <Link className={styles.createBtn} href="/login/create">
+        <p>회원가입하기</p>
       </Link>
     </div>
   );

@@ -23,11 +23,17 @@
   gap: 2rem;
 }
 
-.login {
+.login,
+.logout {
   position: absolute;
   top: 50%;
   right: 60px;
   transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.logout:hover {
+  cursor: pointer;
 }
 
 .listItemContent {

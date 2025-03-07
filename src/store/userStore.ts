@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 // User 타입 정의
 export interface User {
@@ -18,9 +19,17 @@ interface UserState {
 // 초기 상태
 const initialUser: User | null = null;
 
-// Zustand 스토어 생성
-export const useUserStore = create<UserState>((set) => ({
-  user: initialUser,
-  setUser: (user: User) => set({ user }),
-  clearUser: () => set({ user: null }),
-}));
+// Zustand 스토어 생성 (persist 미들웨어 적용)
+export const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      user: initialUser,
+      setUser: (user: User) => set({ user }),
+      clearUser: () => set({ user: null }),
+    }),
+    {
+      name: "user-storage", // localStorage에 저장될 키 이름
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);

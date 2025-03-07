@@ -91,7 +91,7 @@ const CreateSection = () => {
 
       {/* 회원가입 폼 */}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.inputBox}>
           <label htmlFor="name">이름</label>
           <input
             id="name"
@@ -102,7 +102,7 @@ const CreateSection = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.inputBox}>
           <label htmlFor="email">이메일</label>
           <input
             id="email"
@@ -113,7 +113,7 @@ const CreateSection = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.inputBox}>
           <label htmlFor="password">비밀번호</label>
           <input
             id="password"
@@ -124,7 +124,7 @@ const CreateSection = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.inputBox}>
           <label htmlFor="confirm-password">비밀번호 확인</label>
           <input
             id="confirm-password"
@@ -164,7 +164,7 @@ const CreateSection = () => {
           </div>
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button className={styles.createBtn} type="submit" disabled={loading}>
           {loading ? "처리 중..." : "회원가입"}
         </button>
       </form>

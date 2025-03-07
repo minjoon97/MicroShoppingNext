@@ -103,7 +103,7 @@ const LoginSection = () => {
 
       {/* 로그인 폼 */}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.inputBox}>
           <label htmlFor="email">이메일</label>
           <input
             id="email"
@@ -114,7 +114,7 @@ const LoginSection = () => {
           />
         </div>
 
-        <div>
+        <div className={styles.inputBox}>
           <label htmlFor="password">비밀번호</label>
           <input
             id="password"
@@ -125,7 +125,7 @@ const LoginSection = () => {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
+        <button className={styles.loginBtn} type="submit" disabled={loading}>
           {loading ? "로그인 중..." : "로그인"}
         </button>
       </form>
