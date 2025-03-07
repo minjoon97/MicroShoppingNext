@@ -6,19 +6,13 @@ import { useProductStore } from "@/store/useProductStore";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-interface ProductDetailProps {
-  params: {
-    productdetail: string;
-  };
-}
-
-const ProductDetailPage = ({ params }: ProductDetailProps) => {
+const ProductDetailPage = () => {
   const selectedProduct = useProductStore((state) => state.selectedProduct);
   const [product, setProduct] = useState<fetchedProductsType | null>(null);
 
   useEffect(() => {
     setProduct(selectedProduct);
-  }, [selectedProduct, params.productdetail]);
+  }, [selectedProduct]);
 
   if (!product) {
     return <div className={styles.wrapper}>상품 정보를 불러오는 중...</div>;
