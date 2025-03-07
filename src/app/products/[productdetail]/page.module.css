@@ -4,7 +4,7 @@
   margin: 0 auto;
   padding-top: 200px;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .info {
