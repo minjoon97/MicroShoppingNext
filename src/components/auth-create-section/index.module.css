@@ -26,6 +26,11 @@
   outline: none;
 }
 
+.radioBox {
+  display: flex;
+  gap: 1rem;
+}
+
 .createBtn {
   width: 100%;
   height: 40px;

@@ -136,9 +136,9 @@ const CreateSection = () => {
         </div>
 
         {/* 역할 선택 */}
-        <div>
+        <div className={styles.inputBox}>
           <label>계정 유형</label>
-          <div>
+          <div className={styles.radioBox}>
             <div>
               <input
                 id="role-user"

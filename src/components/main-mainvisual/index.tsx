@@ -31,11 +31,11 @@ const MainVisual = () => {
               <Image
                 src={item.image}
                 alt="product-image"
-                width={300}
-                height={300}
+                width={1920}
+                height={1080}
                 style={{
-                  width: "100%",
-                  height: "auto",
+                  width: "auto",
+                  height: "100%",
                   objectFit: "contain",
                 }}
                 className={styles.productImage}

@@ -3,9 +3,14 @@
 import styles from "./page.module.css";
 import ProductItem from "@/components/productItem";
 import { useProducts } from "@/hooks/useProducts";
+import { useProductStore } from "@/store/useProductStore";
+import Link from "next/link";
 
 const ProductPage = () => {
   const { items, loading } = useProducts();
+  const setSelectedProduct = useProductStore(
+    (state) => state.setSelectedProduct
+  );
 
   if (loading) return <div>로딩 중...</div>;
 
@@ -17,7 +22,16 @@ const ProductPage = () => {
       </div>
       <div className={styles.gridContainer}>
         {items.map((item) => (
-          <ProductItem key={item.id} item={item}></ProductItem>
+          <Link
+            key={item.id}
+            href={`products/${item.id}`}
+            className={styles.productItemLink}
+            onClick={() => {
+              setSelectedProduct(item);
+            }}
+          >
+            <ProductItem item={item}></ProductItem>
+          </Link>
         ))}
       </div>
     </div>
