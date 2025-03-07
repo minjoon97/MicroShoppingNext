@@ -8,7 +8,7 @@ import Image from "next/image";
 
 interface ProductDetailProps {
   params: {
-    id: string;
+    productdetail: string;
   };
 }
 
@@ -18,7 +18,7 @@ const ProductDetailPage = ({ params }: ProductDetailProps) => {
 
   useEffect(() => {
     setProduct(selectedProduct);
-  }, [selectedProduct, params.id]);
+  }, [selectedProduct, params.productdetail]);
 
   if (!product) {
     return <div className={styles.wrapper}>상품 정보를 불러오는 중...</div>;
