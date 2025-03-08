@@ -28,14 +28,15 @@ const AdminMainvisuals = () => {
           <div>로딩 중...</div>
         ) : (
           items.map((item, index) => (
-            <div
-              className={styles.mainvisualListItem}
-              key={index}
-              onClick={() => {
-                deleteMainvisual(item.id);
-              }}
-            >
+            <div className={styles.mainvisualListItem} key={index}>
               {item.title}
+              <p
+                onClick={() => {
+                  deleteMainvisual(item.id);
+                }}
+              >
+                &times;
+              </p>
             </div>
           ))
         )}
