@@ -3,12 +3,14 @@
 import { ChangeEvent, useState } from "react";
 
 import styles from "./index.module.css";
-import { addMainvisual } from "@/data/mainvisual";
+import { useMainvisuals } from "@/hooks/useMainvisuals";
 
 const AddMainvisualSection = () => {
   const [mvTitle, setMvTitle] = useState("");
   const [mvSubtitle, setMvSubtitle] = useState("");
   const [mvImage, setMvImage] = useState<File | null>(null);
+
+  const { handleAdd } = useMainvisuals();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -23,7 +25,7 @@ const AddMainvisualSection = () => {
     }
 
     try {
-      await addMainvisual({
+      await handleAdd({
         title: mvTitle,
         subtitle: mvSubtitle,
         image: mvImage,

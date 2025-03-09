@@ -5,10 +5,9 @@ import styles from "./index.module.css";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import AddMainvisualSection from "./admin-add-mv";
-import { deleteMainvisual } from "@/data/mainvisual";
 
 const AdminMainvisuals = () => {
-  const { items, loading } = useMainvisuals();
+  const { items, loading, handleDelete } = useMainvisuals();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,7 +31,7 @@ const AdminMainvisuals = () => {
               {item.title}
               <p
                 onClick={() => {
-                  deleteMainvisual(item.id);
+                  handleDelete(item.id);
                 }}
               >
                 &times;

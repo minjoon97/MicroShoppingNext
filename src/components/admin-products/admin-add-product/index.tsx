@@ -3,13 +3,15 @@
 import { ChangeEvent, useState } from "react";
 
 import styles from "./index.module.css";
-import { addProduct } from "@/data/products";
+import { useProducts } from "@/hooks/useProducts";
 
 const AddProductSection = () => {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productPrice, setProductPrice] = useState(0);
   const [productImage, setProductImage] = useState<File | null>(null);
+
+  const { handleAdd } = useProducts();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -24,7 +26,7 @@ const AddProductSection = () => {
     }
 
     try {
-      await addProduct({
+      await handleAdd({
         name: productName,
         category: productCategory,
         price: productPrice,

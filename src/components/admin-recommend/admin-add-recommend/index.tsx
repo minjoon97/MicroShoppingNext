@@ -3,13 +3,15 @@
 import { ChangeEvent, useState } from "react";
 
 import styles from "./index.module.css";
-import { addRecommend } from "@/data/recommend";
+import { useRecommends } from "@/hooks/useRecommends";
 
 const AddRecommendSection = () => {
   const [recommendName, setRecommendName] = useState("");
   const [recommendCategory, setRecommendCategory] = useState("");
   const [recommendPrice, setRecommendPrice] = useState(0);
   const [recommendImage, setRecommendImage] = useState<File | null>(null);
+
+  const { handleAdd } = useRecommends();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -29,7 +31,7 @@ const AddRecommendSection = () => {
     }
 
     try {
-      await addRecommend({
+      await handleAdd({
         name: recommendName,
         category: recommendCategory,
         price: recommendPrice,

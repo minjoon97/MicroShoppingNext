@@ -1,5 +1,16 @@
-import { collection, getDocs, doc, setDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
 
 import { addProductType, fetchedProductsType } from "@/types/ProductType";
 import { db, storage } from "./firestore";
@@ -60,4 +71,28 @@ export async function addProduct({
   await setDoc(newProductRef, newProductData);
 
   return newProductData;
+}
+
+//product 삭제하기
+export async function deleteProduct(productId: string) {
+  try {
+    // 1. Firestore에서 상품 데이터 삭제
+    const productRef = doc(db, "products", productId);
+    await deleteDoc(productRef);
+
+    // 2. Storage에서 이미지 삭제
+    const storageRef = ref(storage, `products/${productId}`);
+    await deleteObject(storageRef);
+
+    return {
+      success: true,
+      message: "상품이 성공적으로 삭제되었습니다.",
+    };
+  } catch (error) {
+    console.error("상품 삭제 중 오류 발생:", error);
+    return {
+      success: false,
+      message: "상품 삭제 중 오류가 발생했습니다.",
+    };
+  }
 }

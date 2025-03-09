@@ -7,7 +7,7 @@ import { useRecommends } from "@/hooks/useRecommends";
 import AddRecommendSection from "./admin-add-recommend";
 
 const AdminRecommends = () => {
-  const { items, loading } = useRecommends();
+  const { items, loading, handleDelete } = useRecommends();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,6 +29,13 @@ const AdminRecommends = () => {
           items.map((item, index) => (
             <div className={styles.recommendListItem} key={index}>
               {item.name}
+              <p
+                onClick={() => {
+                  handleDelete(item.id);
+                }}
+              >
+                &times;
+              </p>
             </div>
           ))
         )}

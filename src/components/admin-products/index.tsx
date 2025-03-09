@@ -7,7 +7,7 @@ import Modal from "@/components/Modal";
 import { useState } from "react";
 
 const AdminProducts = () => {
-  const { items, loading } = useProducts();
+  const { items, loading, handleDelete } = useProducts();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,6 +29,13 @@ const AdminProducts = () => {
           items.map((item, index) => (
             <div className={styles.productListItem} key={index}>
               {item.name}
+              <p
+                onClick={() => {
+                  handleDelete(item.id);
+                }}
+              >
+                &times;
+              </p>
             </div>
           ))
         )}

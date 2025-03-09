@@ -37,9 +37,14 @@
 .productListItem {
   width: calc(50% - 3px);
   height: 40px;
-  padding-left: 1rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+.productListItem > p:hover {
+  cursor: pointer;
 }
