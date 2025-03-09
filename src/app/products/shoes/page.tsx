@@ -7,7 +7,7 @@ import { useProductStore } from "@/store/useProductStore";
 import Link from "next/link";
 
 const ProductPage = () => {
-  const { items, loading } = useProducts();
+  const { items, loading } = useProducts("신발");
   const setSelectedProduct = useProductStore(
     (state) => state.setSelectedProduct
   );
@@ -24,7 +24,7 @@ const ProductPage = () => {
         {items.map((item) => (
           <Link
             key={item.id}
-            href={`products/${item.id}`}
+            href={`/products/${item.id}`}
             className={styles.productItemLink}
             onClick={() => {
               setSelectedProduct(item);

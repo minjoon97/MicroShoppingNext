@@ -4,6 +4,8 @@ import {
   doc,
   setDoc,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore";
 import {
   ref,
@@ -95,4 +97,34 @@ export async function deleteProduct(productId: string) {
       message: "상품 삭제 중 오류가 발생했습니다.",
     };
   }
+}
+
+//카테고리별로 불러오기
+export async function fetchProductsByCategory(category: string) {
+  const fetchedProducts: fetchedProductsType[] = [];
+
+  // category 필드가 주어진 카테고리와 일치하는 문서만 쿼리
+  const q = query(
+    collection(db, "products"),
+    where("category", "==", category)
+  );
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    return [];
+  }
+
+  querySnapshot.forEach((doc) => {
+    const aProduct = {
+      id: doc.id,
+      name: doc.data()["name"],
+      category: doc.data()["category"],
+      price: doc.data()["price"],
+      image: doc.data()["image"],
+    };
+
+    fetchedProducts.push(aProduct);
+  });
+
+  return fetchedProducts;
 }

@@ -48,35 +48,52 @@ const Header = () => {
       </h1>
       <ul className={styles.menu}>
         <li className={styles.listItem}>
-          <Link className={styles.listItemContent} href="/products">
-            PRODUCTS
+          <Link className={styles.listItemContent} href="/products/top">
+            TOP
           </Link>
         </li>
         <li className={styles.listItem}>
-          <Link className={styles.listItemContent} href="/products">
-            MYPAGE
+          <Link className={styles.listItemContent} href="/products/bottom">
+            BOTTOM
           </Link>
         </li>
-        {user?.role === "admin" && (
-          <li className={styles.listItem}>
-            <Link className={styles.listItemContent} href="/admin">
-              ADMIN
-            </Link>
-          </li>
-        )}
+        <li className={styles.listItem}>
+          <Link className={styles.listItemContent} href="/products/shoes">
+            SHOES
+          </Link>
+        </li>
       </ul>
-      {!user && (
-        <div className={styles.login}>
-          <Link className={styles.listItemContent} href="/login">
+      <div className={styles.rightBox}>
+        {!user && (
+          <Link className={styles.login} href="/login">
             로그인
           </Link>
-        </div>
-      )}
-      {user && (
-        <div className={styles.logout} onClick={handleLogoutClick}>
-          로그아웃
-        </div>
-      )}
+        )}
+        {user && (
+          <div className={styles.logout} onClick={handleLogoutClick}>
+            로그아웃
+          </div>
+        )}
+        <ul className={styles.rightMenu}>
+          {user?.role === "admin" && (
+            <li className={styles.listItem}>
+              <Link className={styles.listItemContent} href="/admin">
+                ADMIN
+              </Link>
+            </li>
+          )}
+          <li className={styles.listItem}>
+            <Link className={styles.listItemContent} href="/products">
+              <Image
+                src="/profile.png"
+                alt="profile"
+                width={30}
+                height={30}
+              ></Image>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

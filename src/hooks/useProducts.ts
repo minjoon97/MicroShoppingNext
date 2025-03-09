@@ -1,15 +1,28 @@
-import { fetchProducts, addProduct, deleteProduct } from "@/data/products";
+import {
+  fetchProducts,
+  addProduct,
+  deleteProduct,
+  fetchProductsByCategory,
+} from "@/data/products";
 import { addProductType, fetchedProductsType } from "@/types/ProductType";
 import { useEffect, useState } from "react";
 
-export function useProducts() {
+export function useProducts(category?: string) {
   const [items, setItems] = useState<fetchedProductsType[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       setLoading(true);
-      const products = await fetchProducts();
+      let products;
+
+      // 카테고리가 제공되면 해당 카테고리의 제품만 가져오고, 아니면 모든 제품 가져오기
+      if (category) {
+        products = await fetchProductsByCategory(category);
+      } else {
+        products = await fetchProducts();
+      }
+
       setItems(products);
     } catch (error) {
       console.error("상품 데이터 로딩 중 오류 발생:", error);
@@ -20,28 +33,31 @@ export function useProducts() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [category]); // category가 변경될 때마다 데이터 다시 가져오기
 
   // 상품 추가 함수
   const handleAdd = async (formData: addProductType) => {
     try {
       setLoading(true);
 
-      const { name, category, price, image } = formData;
+      const { name, category: productCategory, price, image } = formData;
 
-      if (!name || !category || !price || !image) {
+      if (!name || !productCategory || !price || !image) {
         return { success: false, message: "모든 정보를 입력해주세요." };
       }
 
       const newProduct = await addProduct({
         name,
-        category,
+        category: productCategory,
         price,
         image,
       });
 
       // 성공 시 상태 업데이트 (새 항목 추가)
-      setItems((prevItems) => [...prevItems, newProduct]);
+      // 현재 선택된 카테고리와 제품의 카테고리가 일치하거나 카테고리가 선택되지 않은 경우에만 추가
+      if (!category || newProduct.category === category) {
+        setItems((prevItems) => [...prevItems, newProduct]);
+      }
 
       return { success: true, message: "상품이 추가되었습니다." };
     } catch (error) {
@@ -82,5 +98,11 @@ export function useProducts() {
     fetchData();
   };
 
-  return { items, loading, handleAdd, handleDelete, refreshData };
+  return {
+    items,
+    loading,
+    handleAdd,
+    handleDelete,
+    refreshData,
+  };
 }
