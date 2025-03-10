@@ -9,9 +9,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useProducts } from "@/hooks/useProducts";
 import Image from "next/image";
+import Link from "next/link";
+import { useProductStore } from "@/store/useProductStore";
 
 const ModernSection = () => {
   const { items, loading } = useProducts();
+  const setSelectedProduct = useProductStore(
+    (state) => state.setSelectedProduct
+  );
 
   if (loading) return <div>로딩 중...</div>;
 
@@ -30,18 +35,25 @@ const ModernSection = () => {
         {items.slice(0, 6).map((item, index) => (
           <SwiperSlide key={`section-${index}`}>
             <div className={styles.mainSlideItem}>
-              <Image
-                src={item.image}
-                alt="product-image"
-                width={300}
-                height={300}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
+              <Link
+                href={`/products/${item.id}`}
+                onClick={() => {
+                  setSelectedProduct(item);
                 }}
-                className={styles.productImage}
-              />
+              >
+                <Image
+                  src={item.image}
+                  alt="product-image"
+                  width={300}
+                  height={300}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
+                  className={styles.productImage}
+                />
+              </Link>
             </div>
           </SwiperSlide>
         ))}
