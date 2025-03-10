@@ -15,6 +15,12 @@
   padding-bottom: 50px;
 }
 
+.wrapper > h3 {
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 14px;
+}
+
 .addBtn {
   width: 100px;
   height: 40px;
@@ -32,6 +38,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  padding-bottom: 20px;
 }
 
 .productListItem {

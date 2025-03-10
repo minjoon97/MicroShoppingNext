@@ -40,15 +40,22 @@ export function useProducts(category?: string) {
     try {
       setLoading(true);
 
-      const { name, category: productCategory, price, image } = formData;
+      const {
+        name,
+        category: productCategory,
+        description,
+        price,
+        image,
+      } = formData;
 
-      if (!name || !productCategory || !price || !image) {
+      if (!name || !productCategory || !price || !description || !image) {
         return { success: false, message: "모든 정보를 입력해주세요." };
       }
 
       const newProduct = await addProduct({
         name,
         category: productCategory,
+        description,
         price,
         image,
       });
@@ -58,6 +65,8 @@ export function useProducts(category?: string) {
       if (!category || newProduct.category === category) {
         setItems((prevItems) => [...prevItems, newProduct]);
       }
+
+      console.log(items);
 
       return { success: true, message: "상품이 추가되었습니다." };
     } catch (error) {

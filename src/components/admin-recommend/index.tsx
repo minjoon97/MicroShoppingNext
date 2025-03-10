@@ -7,7 +7,7 @@ import { useRecommends } from "@/hooks/useRecommends";
 import AddRecommendSection from "./admin-add-recommend";
 
 const AdminRecommends = () => {
-  const { items, loading, handleDelete } = useRecommends();
+  const { items, loading, handleDelete, handleAdd } = useRecommends();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +41,10 @@ const AdminRecommends = () => {
         )}
       </ul>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddRecommendSection></AddRecommendSection>
+        <AddRecommendSection
+          onAdd={handleAdd}
+          onAddSuccess={closeModal}
+        ></AddRecommendSection>
       </Modal>
     </div>
   );

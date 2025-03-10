@@ -2,6 +2,7 @@ export type fetchedProductsType = {
   id: string;
   name: string;
   category: string;
+  description: string;
   price: number;
   image: string;
 };
@@ -10,6 +11,7 @@ export type fetchedProductsType = {
 export type addProductType = {
   name: string;
   category: string;
+  description: string;
   price: number;
   image: File;
 };

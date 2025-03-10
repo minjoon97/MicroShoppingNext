@@ -3,14 +3,23 @@
 import { ChangeEvent, useState } from "react";
 
 import styles from "./index.module.css";
-import { useMainvisuals } from "@/hooks/useMainvisuals";
+import { addMainvisualType } from "@/types/MainvisualType";
 
-const AddMainvisualSection = () => {
+interface AddMainvisualSectionProps {
+  onAdd: (formData: addMainvisualType) => Promise<{
+    success: boolean;
+    message: string;
+  }>;
+  onAddSuccess?: () => void;
+}
+
+const AddMainvisualSection = ({
+  onAdd,
+  onAddSuccess,
+}: AddMainvisualSectionProps) => {
   const [mvTitle, setMvTitle] = useState("");
   const [mvSubtitle, setMvSubtitle] = useState("");
   const [mvImage, setMvImage] = useState<File | null>(null);
-
-  const { handleAdd } = useMainvisuals();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -25,7 +34,7 @@ const AddMainvisualSection = () => {
     }
 
     try {
-      await handleAdd({
+      await onAdd({
         title: mvTitle,
         subtitle: mvSubtitle,
         image: mvImage,
@@ -35,6 +44,7 @@ const AddMainvisualSection = () => {
       setMvSubtitle("");
       setMvImage(null);
       alert("상품이 추가되었습니다!");
+      if (onAddSuccess) onAddSuccess();
     } catch (error) {
       console.error("상품 추가 중 오류 발생:", error);
       alert("상품 추가에 실패했습니다.");

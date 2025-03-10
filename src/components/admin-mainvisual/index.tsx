@@ -7,7 +7,7 @@ import { useState } from "react";
 import AddMainvisualSection from "./admin-add-mv";
 
 const AdminMainvisuals = () => {
-  const { items, loading, handleDelete } = useMainvisuals();
+  const { items, loading, handleDelete, handleAdd } = useMainvisuals();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +41,10 @@ const AdminMainvisuals = () => {
         )}
       </ul>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddMainvisualSection></AddMainvisualSection>
+        <AddMainvisualSection
+          onAdd={handleAdd}
+          onAddSuccess={closeModal}
+        ></AddMainvisualSection>
       </Modal>
     </div>
   );

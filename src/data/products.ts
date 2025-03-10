@@ -34,6 +34,7 @@ export async function fetchProducts() {
       id: doc.id,
       name: doc.data()["name"],
       category: doc.data()["category"],
+      description: doc.data()["description"],
       price: doc.data()["price"],
       image: doc.data()["image"],
     };
@@ -48,6 +49,7 @@ export async function fetchProducts() {
 export async function addProduct({
   name,
   category,
+  description,
   price,
   image,
 }: addProductType) {
@@ -66,6 +68,7 @@ export async function addProduct({
     id: productId,
     name: name,
     category: category,
+    description: description,
     price: price,
     image: imageUrl,
   };
@@ -119,6 +122,7 @@ export async function fetchProductsByCategory(category: string) {
       id: doc.id,
       name: doc.data()["name"],
       category: doc.data()["category"],
+      description: doc.data()["description"],
       price: doc.data()["price"],
       image: doc.data()["image"],
     };

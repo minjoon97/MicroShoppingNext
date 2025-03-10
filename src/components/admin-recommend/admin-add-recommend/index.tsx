@@ -3,15 +3,24 @@
 import { ChangeEvent, useState } from "react";
 
 import styles from "./index.module.css";
-import { useRecommends } from "@/hooks/useRecommends";
+import { addRecommendType } from "@/types/RecommendType";
 
-const AddRecommendSection = () => {
+interface AddRecommendSectionProps {
+  onAdd: (formData: addRecommendType) => Promise<{
+    success: boolean;
+    message: string;
+  }>;
+  onAddSuccess?: () => void;
+}
+
+const AddRecommendSection = ({
+  onAdd,
+  onAddSuccess,
+}: AddRecommendSectionProps) => {
   const [recommendName, setRecommendName] = useState("");
   const [recommendCategory, setRecommendCategory] = useState("");
   const [recommendPrice, setRecommendPrice] = useState(0);
   const [recommendImage, setRecommendImage] = useState<File | null>(null);
-
-  const { handleAdd } = useRecommends();
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -31,7 +40,7 @@ const AddRecommendSection = () => {
     }
 
     try {
-      await handleAdd({
+      await onAdd({
         name: recommendName,
         category: recommendCategory,
         price: recommendPrice,
@@ -43,6 +52,7 @@ const AddRecommendSection = () => {
       setRecommendPrice(0);
       setRecommendImage(null);
       alert("상품이 추가되었습니다!");
+      if (onAddSuccess) onAddSuccess();
     } catch (error) {
       console.error("상품 추가 중 오류 발생:", error);
       alert("상품 추가에 실패했습니다.");

@@ -32,19 +32,7 @@ const ProductDetailPage = () => {
         <p>{product.category}</p>
         <h2>{product.name}</h2>
         <p>￦{product.price}</p>
-        <p>
-          ・면100% 데님 소재
-          <br />
-          ・리버시블
-          <br />
-          ・하트 핀스트라이프 포플린 안감
-          <br />
-          ・2개의 웰트 포켓
-          <br />
-          ・리버시블 지퍼
-          <br />
-          ・하트 라벨
-        </p>
+        <p>{product.description}</p>
         <div className={styles.btnBox}>
           <button>상품 구매하기</button>
           <button>
