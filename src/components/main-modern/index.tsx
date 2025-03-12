@@ -35,6 +35,7 @@ const ModernSection = () => {
         {items.slice(0, 6).map((item, index) => (
           <SwiperSlide key={`section-${index}`}>
             <div className={styles.mainSlideItem}>
+              <div className={styles.hoverContents}>{item.name}</div>
               <Link
                 href={`/products/${item.id}`}
                 onClick={() => {

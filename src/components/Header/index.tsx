@@ -87,8 +87,8 @@ const Header = () => {
               <Image
                 src="/profile.png"
                 alt="profile"
-                width={30}
-                height={30}
+                width={26}
+                height={26}
               ></Image>
             </Link>
           </li>

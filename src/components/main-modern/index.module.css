@@ -21,5 +21,30 @@
 .modern .mainSlideItem {
   height: 500px;
   background-color: black;
+  border: none;
   margin-left: 20px;
+  position: relative;
+}
+
+.hoverContents {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  color: white;
+  font-size: 14px;
+  z-index: 99;
+}
+
+.mainSlideItem:hover .hoverContents {
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.mainSlideItem:hover .productImage {
+  transition: 0.2s;
+  opacity: 0.8;
 }
