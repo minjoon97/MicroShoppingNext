@@ -32,8 +32,8 @@ const RecommendSection = () => {
               <Image
                 src={item.image}
                 alt="product-image"
-                width={500}
-                height={1000}
+                width={800}
+                height={600}
                 style={{
                   width: "100%",
                   height: "auto",

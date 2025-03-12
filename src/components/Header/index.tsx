@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import styles from "./index.module.css";
 import { signOut } from "firebase/auth";
@@ -10,6 +12,9 @@ import { useUserStore } from "@/store/userStore";
 
 const Header = () => {
   const user = useUserStore((state) => state.user);
+  const router = useRouter();
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // 로그아웃 함수
   const handleLogout = async () => {
@@ -35,7 +40,31 @@ const Header = () => {
   const handleLogoutClick = async () => {
     const result = await handleLogout();
     if (result.success) {
-      // 추가적인 UI 처리 (예: 알림 메시지 표시)
+      alert("로그아웃 됐습니다.");
+    }
+  };
+
+  // 검색 토글 핸들러
+  const toggleSearch = () => {
+    setShowSearch(!showSearch);
+    if (!showSearch) {
+      // 검색창이 열릴 때 입력 필드에 포커스
+      setTimeout(() => {
+        const searchInput = document.getElementById("search-input");
+        if (searchInput) searchInput.focus();
+      }, 100);
+    }
+  };
+
+  // 검색 제출 핸들러
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // 검색어가 있으면 검색 결과 페이지로 이동
+      router.push(`/products/all?search=${encodeURIComponent(searchQuery)}`);
+      // 검색 후 검색창 닫기 (선택사항)
+      setShowSearch(false);
+      setSearchQuery("");
     }
   };
 
@@ -62,7 +91,42 @@ const Header = () => {
             SHOES
           </Link>
         </li>
+        <li
+          className={`${styles.listItem} ${
+            showSearch ? styles.activeSearch : ""
+          }`}
+          onClick={toggleSearch}
+        >
+          <div className={styles.listItemContent}>
+            <Image
+              src="/search.svg"
+              alt="search"
+              width={20}
+              height={20}
+            ></Image>
+          </div>
+        </li>
       </ul>
+
+      {/* 검색 바 */}
+      {showSearch && (
+        <div className={styles.searchContainer}>
+          <form onSubmit={handleSearchSubmit}>
+            <input
+              id="search-input"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="상품명 검색..."
+              className={styles.searchInput}
+            />
+            <button type="submit" className={styles.searchButton}>
+              검색
+            </button>
+          </form>
+        </div>
+      )}
+
       <div className={styles.rightBox}>
         {!user && (
           <Link className={styles.login} href="/login">

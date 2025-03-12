@@ -3,11 +3,12 @@ import {
   addProduct,
   deleteProduct,
   fetchProductsByCategory,
+  searchProductsByName,
 } from "@/data/products";
 import { addProductType, fetchedProductsType } from "@/types/ProductType";
 import { useEffect, useState } from "react";
 
-export function useProducts(category?: string) {
+export function useProducts(category?: string, searchQuery?: string) {
   const [items, setItems] = useState<fetchedProductsType[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,11 +17,27 @@ export function useProducts(category?: string) {
       setLoading(true);
       let products;
 
-      // 카테고리가 제공되면 해당 카테고리의 제품만 가져오고, 아니면 모든 제품 가져오기
-      if (category) {
-        products = await fetchProductsByCategory(category);
-      } else {
-        products = await fetchProducts();
+      // 검색어가 있는 경우
+      if (searchQuery && searchQuery.trim() !== "") {
+        products = await searchProductsByName(searchQuery);
+
+        // 검색 결과에서 카테고리 필터링 (카테고리가 지정된 경우)
+        if (category) {
+          products = products.filter(
+            (product) => product.category === category
+          );
+        }
+      }
+      // 검색어가 없는 경우
+      else {
+        // 카테고리가 지정된 경우 해당 카테고리 상품만 가져오기
+        if (category) {
+          products = await fetchProductsByCategory(category);
+        }
+        // 카테고리도 없는 경우 전체 상품 가져오기
+        else {
+          products = await fetchProducts();
+        }
       }
 
       setItems(products);
@@ -33,7 +50,7 @@ export function useProducts(category?: string) {
 
   useEffect(() => {
     fetchData();
-  }, [category]); // category가 변경될 때마다 데이터 다시 가져오기
+  }, [category, searchQuery]); // category나 searchQuery가 변경될 때마다 데이터 다시 가져오기
 
   // 상품 추가 함수
   const handleAdd = async (formData: addProductType) => {
@@ -62,11 +79,14 @@ export function useProducts(category?: string) {
 
       // 성공 시 상태 업데이트 (새 항목 추가)
       // 현재 선택된 카테고리와 제품의 카테고리가 일치하거나 카테고리가 선택되지 않은 경우에만 추가
-      if (!category || newProduct.category === category) {
+      // 또한 검색어가 있는 경우 검색어와 일치하는지 확인
+      if (
+        (!category || newProduct.category === category) &&
+        (!searchQuery ||
+          newProduct.name.toLowerCase().includes(searchQuery.toLowerCase()))
+      ) {
         setItems((prevItems) => [...prevItems, newProduct]);
       }
-
-      console.log(items);
 
       return { success: true, message: "상품이 추가되었습니다." };
     } catch (error) {

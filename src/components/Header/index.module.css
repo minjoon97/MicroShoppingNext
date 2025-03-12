@@ -23,10 +23,19 @@
   gap: 2rem;
 }
 
+.listItem {
+  display: flex;
+  align-items: center;
+}
+
 .listItemContent {
   color: black;
   font-size: 12px;
   text-decoration: none;
+}
+
+.listItemContent:hover {
+  cursor: pointer;
 }
 
 .rightBox {
@@ -48,13 +57,92 @@
 
 .login,
 .logout {
-  border: 1px solid rgb(99, 99, 99);
+  border: 1px solid rgb(168, 168, 168);
   border-radius: 10px;
   padding: 3px 5px;
   font-size: 12px;
-  color: black;
+  color: rgb(58, 58, 58);
 }
 
 .logout:hover {
   cursor: pointer;
+}
+
+.activeSearch {
+  font-weight: bold;
+  color: #000;
+}
+
+.searchContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  animation: slideDown 0.3s ease;
+}
+
+.searchContainer form {
+  display: flex;
+  gap: 1rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #888;
+}
+
+.searchButton {
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100px;
+}
+
+.searchButton:hover {
+  background-color: #333;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .searchContainer {
+    padding: 10px;
+  }
+
+  .searchInput {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .searchButton {
+    padding: 6px 12px;
+    font-size: 12px;
+    right: 20px;
+  }
 }

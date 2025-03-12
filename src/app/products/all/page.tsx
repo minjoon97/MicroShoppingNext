@@ -1,13 +1,18 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import styles from "./page.module.css";
-import ProductItem from "@/components/productItem";
 import { useProducts } from "@/hooks/useProducts";
 import { useProductStore } from "@/store/useProductStore";
-import Link from "next/link";
+import ProductItem from "@/components/productItem";
 
-const ProductPage = () => {
-  const { items, loading } = useProducts("신발");
+export default function SearchPage() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
+
+  // useProducts 훅에 검색어 전달
+  const { items, loading } = useProducts(undefined, searchQuery);
   const setSelectedProduct = useProductStore(
     (state) => state.setSelectedProduct
   );
@@ -17,7 +22,7 @@ const ProductPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <h2>신발 상품목록</h2>
+        <h2>검색 상품목록</h2>
         <p>{items.length}건</p>
       </div>
       <div className={styles.gridContainer}>
@@ -36,6 +41,4 @@ const ProductPage = () => {
       </div>
     </div>
   );
-};
-
-export default ProductPage;
+}

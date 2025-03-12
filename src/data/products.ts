@@ -17,6 +17,20 @@ import {
 import { addProductType, fetchedProductsType } from "@/types/ProductType";
 import { db, storage } from "./firestore";
 
+export async function searchProductsByName(searchQuery: string) {
+  if (!searchQuery || searchQuery.trim() === "") {
+    return fetchProducts(); // 검색어가 없으면 모든 상품 반환
+  }
+
+  // 모든 상품을 가져온 후 클라이언트 측에서 이름 기반 필터링
+  const allProducts = await fetchProducts();
+  const searchKeyword = searchQuery.toLowerCase().trim();
+
+  return allProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchKeyword)
+  );
+}
+
 //product전체 불러오기
 export async function fetchProducts() {
   const fetchedProducts: fetchedProductsType[] = [];

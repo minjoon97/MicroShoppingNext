@@ -17,7 +17,7 @@ const ProductPage = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
-        <h2>상품목록</h2>
+        <h2>상의 상품목록</h2>
         <p>{items.length}건</p>
       </div>
       <div className={styles.gridContainer}>
