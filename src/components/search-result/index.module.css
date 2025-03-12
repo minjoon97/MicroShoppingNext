@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 200px 0;
+}
+
+.title {
+  max-width: 1800px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.title h2 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.title p {
+  font-weight: 200;
+}
+
+.gridContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1800px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.productItemLink {
+  color: black;
+}

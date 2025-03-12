@@ -6,13 +6,14 @@ import {
   searchProductsByName,
 } from "@/data/products";
 import { addProductType, fetchedProductsType } from "@/types/ProductType";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export function useProducts(category?: string, searchQuery?: string) {
   const [items, setItems] = useState<fetchedProductsType[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
+  // useCallback을 사용하여 함수를 메모이제이션
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       let products;
@@ -46,11 +47,11 @@ export function useProducts(category?: string, searchQuery?: string) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [category, searchQuery]); // 의존성 배열에 category와 searchQuery 포함
 
   useEffect(() => {
     fetchData();
-  }, [category, searchQuery]); // category나 searchQuery가 변경될 때마다 데이터 다시 가져오기
+  }, [fetchData]); // 의존성 배열에 fetchData만 포함
 
   // 상품 추가 함수
   const handleAdd = async (formData: addProductType) => {
