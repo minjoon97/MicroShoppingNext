@@ -1,12 +1,21 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
-// User 타입 정의
+// User 인터페이스 수정
+export interface SavedProduct {
+  productId: string;
+  name: string;
+  price: number;
+  image?: string;
+}
+
 export interface User {
   uid: string | null;
   email: string | null;
   displayName: string | null;
   role: string;
+  wishlist?: SavedProduct[]; // 찜 목록에 상품 정보 저장
+  cartItems?: SavedProduct[]; // 장바구니에도 상품 정보 저장
 }
 
 // 스토어 상태 타입 정의

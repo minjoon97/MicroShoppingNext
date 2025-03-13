@@ -28,6 +28,10 @@
   align-items: center;
 }
 
+.listItem:nth-of-type(4) {
+  padding-left: 20px;
+}
+
 .listItemContent {
   color: black;
   font-size: 12px;

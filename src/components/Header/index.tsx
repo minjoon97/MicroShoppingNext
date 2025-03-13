@@ -91,6 +91,11 @@ const Header = () => {
             SHOES
           </Link>
         </li>
+        <li className={styles.listItem}>
+          <Link className={styles.listItemContent} href="/cart">
+            <Image src="/cart.svg" alt="cart" width={20} height={20}></Image>
+          </Link>
+        </li>
         <li
           className={`${styles.listItem} ${
             showSearch ? styles.activeSearch : ""
@@ -147,7 +152,7 @@ const Header = () => {
             </li>
           )}
           <li className={styles.listItem}>
-            <Link className={styles.listItemContent} href="/products">
+            <Link className={styles.listItemContent} href="/profile">
               <Image
                 src="/profile.png"
                 alt="profile"
