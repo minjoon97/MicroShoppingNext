@@ -37,7 +37,7 @@ const LoginSection = () => {
         password
       );
 
-      // Firestore에서 사용자 정보 가져오기 (role 포함)
+      // Firestore에서 사용자 정보 가져오기 (role, wishlist, cartItems 포함)
       const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
 
       if (userDoc.exists()) {
@@ -48,6 +48,8 @@ const LoginSection = () => {
           email: userCredential.user.email,
           displayName: userCredential.user.displayName,
           role: userData.role || "user", // role 정보 가져오기 (없으면 'user' 기본값 사용)
+          wishlist: userData.wishlist || [], // 찜 목록 가져오기
+          cartItems: userData.cartItems || [], // 장바구니 가져오기
         };
         setUser(userInfo);
 
@@ -60,6 +62,8 @@ const LoginSection = () => {
           email: userCredential.user.email,
           displayName: userCredential.user.displayName,
           role: "user",
+          wishlist: [], // 빈 찜 목록으로 초기화
+          cartItems: [], // 빈 장바구니로 초기화
         };
         setUser(userInfo);
         console.log("사용자 문서가 없습니다. 기본 역할 사용: user");
@@ -99,7 +103,7 @@ const LoginSection = () => {
       <h2>로그인</h2>
 
       {/* 에러 메시지 */}
-      {error && <div>{error}</div>}
+      {error && <div className={styles.errorMessage}>{error}</div>}
 
       {/* 로그인 폼 */}
       <form onSubmit={handleSubmit}>

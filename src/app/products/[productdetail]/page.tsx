@@ -141,7 +141,7 @@ const ProductDetailPage = () => {
 
       let newCartItems;
       if (existingItemIndex >= 0) {
-        // 이미 있어도 한 번 더 추가 (중복 추가 가능)
+        // 이미 있으면 반려
         alert("장바구니에 이미 있는 상품입니다.");
         return;
       } else {

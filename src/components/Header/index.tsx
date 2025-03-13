@@ -91,11 +91,13 @@ const Header = () => {
             SHOES
           </Link>
         </li>
-        <li className={styles.listItem}>
-          <Link className={styles.listItemContent} href="/cart">
-            <Image src="/cart.svg" alt="cart" width={20} height={20}></Image>
-          </Link>
-        </li>
+        {user && (
+          <li className={styles.listItem}>
+            <Link className={styles.listItemContent} href="/cart">
+              <Image src="/cart.svg" alt="cart" width={20} height={20}></Image>
+            </Link>
+          </li>
+        )}
         <li
           className={`${styles.listItem} ${
             showSearch ? styles.activeSearch : ""
@@ -151,16 +153,18 @@ const Header = () => {
               </Link>
             </li>
           )}
-          <li className={styles.listItem}>
-            <Link className={styles.listItemContent} href="/profile">
-              <Image
-                src="/profile.png"
-                alt="profile"
-                width={26}
-                height={26}
-              ></Image>
-            </Link>
-          </li>
+          {user && (
+            <li className={styles.listItem}>
+              <Link className={styles.listItemContent} href="/profile">
+                <Image
+                  src="/profile.png"
+                  alt="profile"
+                  width={26}
+                  height={26}
+                ></Image>
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

@@ -1,0 +1,47 @@
+.wrapper {
+  max-width: 720px;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 200px;
+}
+
+.wrapper h2 {
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 50px;
+}
+
+.totalPrice {
+  font-size: 14px;
+  color: rgb(129, 129, 129);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.totalPrice > span {
+  font-size: 24px;
+  color: rgb(24, 24, 24);
+  padding-left: 20px;
+}
+
+.payBtnBox {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px 0;
+}
+
+.payBtn {
+  width: 200px;
+  height: 40px;
+  background-color: rgb(36, 36, 36);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.payBtn:hover {
+  background-color: black;
+  cursor: pointer;
+}
