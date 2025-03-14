@@ -182,7 +182,7 @@ const ProductDetailPage = () => {
       <div className={styles.info}>
         <p>{product.category}</p>
         <h2>{product.name}</h2>
-        <p>￦{product.price}</p>
+        <p>￦{product.price.toLocaleString()}</p>
         <p>{product.description}</p>
         <div className={styles.btnBox}>
           <button onClick={addToCart}>장바구니 담기</button>

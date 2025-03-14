@@ -26,7 +26,7 @@ const ProductItem = ({ item }: ProductItemProps) => {
       </div>
       <p>{item.category}</p>
       <p>{item.name}</p>
-      <p>￦{item.price}</p>
+      <p>￦{item.price.toLocaleString()}</p>
     </div>
   );
 };
