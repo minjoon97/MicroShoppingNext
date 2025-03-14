@@ -27,8 +27,7 @@ const Header = () => {
       clearUser();
 
       console.log("로그아웃 성공");
-
-      // 리디렉션 처리
+      router.push("/");
 
       return { success: true };
     } catch (error) {

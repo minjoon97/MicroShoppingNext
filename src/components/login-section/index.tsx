@@ -11,6 +11,7 @@ import { auth, db } from "@/data/firestore";
 import { useUserStore } from "@/store/userStore"; // Zustand store import
 
 import styles from "./index.module.css";
+import { useRouter } from "next/navigation";
 
 const LoginSection = () => {
   // 로컬 상태 관리
@@ -18,6 +19,7 @@ const LoginSection = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   // Zustand 상태 설정 함수
   const setUser = useUserStore((state) => state.setUser);
@@ -46,15 +48,15 @@ const LoginSection = () => {
         const userInfo = {
           uid: userCredential.user.uid,
           email: userCredential.user.email,
-          displayName: userCredential.user.displayName,
+          displayName: userData.displayName,
           role: userData.role || "user", // role 정보 가져오기 (없으면 'user' 기본값 사용)
           wishlist: userData.wishlist || [], // 찜 목록 가져오기
           cartItems: userData.cartItems || [], // 장바구니 가져오기
         };
         setUser(userInfo);
 
-        console.log("로그인 성공:", userData.role);
-        // 여기서 로그인 성공 후 리디렉션
+        console.log("로그인 성공:", userData.displayName);
+        router.push("/");
       } else {
         // 사용자 문서가 없는 경우 기본 정보만 설정
         const userInfo = {
