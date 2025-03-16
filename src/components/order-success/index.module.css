@@ -1,0 +1,206 @@
+.successContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  padding-top: 200px;
+  background-color: white;
+}
+
+.successHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.successHeader h1 {
+  color: #4caf50;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.orderNumber {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.orderDetails {
+  margin-bottom: 2rem;
+}
+
+.orderSummary {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.orderSummary h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px dashed #eee;
+}
+
+.summaryItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.orderStatus {
+  font-weight: 600;
+  color: #4caf50;
+}
+
+.totalAmount {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #e91e63;
+}
+
+.orderItems h2 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.itemList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  background-color: white;
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  margin-right: 1rem;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.itemImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.itemDetails {
+  flex: 1;
+}
+
+.itemDetails h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.itemPrice {
+  font-weight: 600;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.orderHistoryButton,
+.continueShoppingButton {
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.orderHistoryButton {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.continueShoppingButton {
+  background-color: #272727;
+  color: white;
+  border: 1px solid #272727;
+}
+
+.orderHistoryButton:hover {
+  background-color: #eee;
+}
+
+.continueShoppingButton:hover {
+  background-color: #000000;
+}
+
+/* 로딩 관련 스타일 */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #3f51b5;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 에러 스타일 */
+.errorContainer {
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.errorContainer h2 {
+  color: #f44336;
+  margin-bottom: 1rem;
+}
+
+.homeLink {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #3f51b5;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.homeLink:hover {
+  background-color: #303f9f;
+}
